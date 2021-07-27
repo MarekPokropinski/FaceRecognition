@@ -10,6 +10,7 @@ X = []
 y = []
 
 for entry in os.listdir('data'):
+    if not os.path.isdir(os.path.join('data', entry)): continue
     for img in os.listdir(os.path.join('data', entry)):
         detections = facenet.extract(os.path.join('data', entry, img))
         if len(detections)==0: continue
