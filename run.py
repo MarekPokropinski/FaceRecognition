@@ -5,7 +5,7 @@ import os
 facenet = FaceNet()
 
 
-rnc = RadiusNeighborsClassifier(radius=0.7, outlier_label='Unknown')
+rnc = RadiusNeighborsClassifier(radius=0.9, outlier_label='Unknown')
 X = []
 y = []
 
@@ -21,7 +21,8 @@ rnc.fit(X, y)
 
 
 def detectAndDisplay(frame):
-    detections = facenet.extract(frame)
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    detections = facenet.extract(rgb_frame)
 
     for detection in detections:      
         box = detection['box']
